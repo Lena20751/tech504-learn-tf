@@ -1,7 +1,13 @@
+
 # Local .terraform directories
+# Resaon to ignore -contains the provider plugins and related metadata 
+# not necessarily sensitive, avoiding bloat 
 .terraform/
 
 # .tfstate files
+# SUPER IMPORTANT -terraform keeps a log of what its been up to. This can include credentials(like your git commit history)
+# one team will share their state files, but not via github. Carrier pigeon maybe 
+# whoever is running the terraform commands(i.e apply) needs files to update them + lock  them only 
 *.tfstate
 *.tfstate.*
 
@@ -14,6 +20,7 @@ crash.*.log
 # control as they are data points which are potentially sensitive and subject 
 # to change depending on the environment.
 *.tfvars
+# .tfvars store variable values - may comtain sensitive information such as setup, values 
 *.tfvars.json
 
 # Ignore override files as they are usually used to override resources locally and so
@@ -35,3 +42,6 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# .terraform.lock.hcl - keeps track of the specific versions Terraform has used before- tell you which provider using and specific versions
+# uses the same provider versions - to lock in the provider versions - to get another version must communicate this with team
